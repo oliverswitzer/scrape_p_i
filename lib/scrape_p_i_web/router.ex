@@ -21,9 +21,13 @@ defmodule ScrapePIWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ScrapePIWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ScrapePIWeb do
+    pipe_through :api
+
+    scope "v1" do
+      get "/:namespace", ScrapedApiController, :show
+    end
+  end
 
   # Enables LiveDashboard only for development
   #
